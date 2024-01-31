@@ -8,10 +8,16 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
+// Access the fields to configure webpack
+const pkgVars = require('./package.json');
+
+// Destructure variables from pkgVars.config
+const {entry, sourceDir, buildDir, port} = pkgVars.config;
+
 const config = {
-    entry: './src/assets/scripts/index.js',
+    entry: `./${sourceDir}/assets/scripts/${entry}.js`,
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, buildDir),
     },
     devServer: {
         static: './dist',
@@ -26,7 +32,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.ejs',
+            template: `./${sourceDir}/index.ejs`,
         }),
 
         // Add your plugins here
