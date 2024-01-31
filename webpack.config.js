@@ -21,7 +21,7 @@ const config = {
     },
     devServer: {
         static: './dist',
-        watchFiles: ['index.ejs'],
+        watchFiles: [`./${sourceDir}/index.ejs`],
         open: true,
         hot: true,
         port:3000,
