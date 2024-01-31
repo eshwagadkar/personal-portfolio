@@ -24,6 +24,12 @@
   ],
   "author": "Eshwa Gadkar",
   "license": "MIT",
+  "config": {
+    "entry": "app",
+    "sourceDir": "app/src",
+    "buildDir": "app/dist",
+    "port": "3000"
+  },
   "bugs": {
     "url": "https://github.com/eshwagadkar/personal-portfolio/issues"
   },
