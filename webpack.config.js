@@ -15,7 +15,7 @@ const config = {
     },
     devServer: {
         static: './dist',
-        watchFiles: ['index.html'],
+        watchFiles: ['index.ejs'],
         open: true,
         hot: true,
         port:3000,
@@ -25,7 +25,8 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            filename: 'index.html',
+            template: 'index.ejs',
         }),
 
         // Add your plugins here
