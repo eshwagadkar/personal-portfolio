@@ -21,10 +21,10 @@ const config = {
     },
     devServer: {
         static: './dist',
-        watchFiles: [`./${sourceDir}/index.ejs`],
+        watchFiles: [`./${sourceDir}/index.html`],
         open: true,
         hot: true,
-        port:3000,
+        port:port,
         compress: true,
         historyApiFallback: true,
         host: '0.0.0.0',
@@ -32,7 +32,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: `./${sourceDir}/index.ejs`,
+            template: `./${sourceDir}/index.html`,
         }),
 
         // Add your plugins here
@@ -54,7 +54,7 @@ const config = {
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                type: 'file-loader',
             },
 
             // Add your rules for custom modules here
