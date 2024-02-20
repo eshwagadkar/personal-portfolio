@@ -1,0 +1,32 @@
+.hero-banner{
+    display: grid;
+
+    // Header
+    &__header{
+        display: flex;
+    }
+
+    &__logo-container{
+
+        & h1{
+            // color: aqua;
+        }
+    }
+
+    &__sm-ref-container{
+
+    }
+
+    // Content
+    &__main{
+
+    }
+
+    &__image-container{
+    }
+
+    &__content-container{
+
+    }
+}
+

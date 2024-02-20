@@ -1,0 +1,18 @@
+.main-grid-layout{
+    display: grid;
+    grid-template-rows: repeat(3, minmax(min-content, max-content));
+}
+
+.hero-banner{
+    grid-row: 1 / 2;
+}
+
+.main{
+    grid-row: 2 / 3;
+
+}
+
+.footer{
+    grid-row: 3 / 4;
+
+}
