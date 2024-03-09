@@ -1,74 +1,111 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const fse = require("fs-extra")
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const isProduction = process.env.NODE_ENV == 'production';
-
-const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
+const isProduction = process.env.NODE_ENV == 'production'
 
 // Access the fields to configure webpack
-const pkgVars = require('./package.json');
+const pkgVars = require('./package.json')
 
 // Destructure variables from pkgVars.config
-const {entry, sourceDir, buildDir, port} = pkgVars.config;
+const {entry, sourceDir, buildDir, port} = pkgVars.config
 
+const browserCacheHandler = isProduction ? 'bundle.[contenthash].js' : 'bundle.js'
+const outputBundleHandler = isProduction ? buildDir : sourceDir
+const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
+
+class RunAfterCompile{
+    apply(compiler) {
+        compiler.hooks.done.tap('Copy images', () => {
+            fse.copySync(`./${sourceDir}/images`, `./${buildDir}/images`)
+        })
+    }
+}
+// SHARED CONFIG
 const config = {
-    entry: `./${sourceDir}/assets/scripts/${entry}.js`,
+    entry: `./${sourceDir}/index.js`,
     output: {
-        path: path.resolve(__dirname, buildDir),
+        filename: browserCacheHandler,
+        path: path.resolve(__dirname, outputBundleHandler),
     },
-    devServer: {
-        static: './dist',
-        watchFiles: [`./${sourceDir}/index.html`],
-        open: true,
-        hot: true,
-        port:port,
-        compress: true,
-        historyApiFallback: true,
-        host: '0.0.0.0',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: `./${sourceDir}/index.html`,
-        }),
-
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-    ],
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
+                exclude: /node_modules/,
+                use: { loader: 'babel-loader',
+                 options: {
+                    presets: ['@babel/preset-env']
+                   }
+                },
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler, 'css-loader', 'postcss-loader'],
+                use: [ stylesHandler, 'css-loader' ]
+            },
+            { 
+                test: /\.s[ac]ss$/i, 
+                use: [ stylesHandler, 'css-loader', 'sass-loader'] 
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'file-loader',
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
-        ],
+            {
+                test: /\.hbs$/,
+                use: [
+                    'handlebars-loader'
+                ]
+            }
+         ],
     },
-};
+    plugins: [
+        // new CleanWebpackPlugin({
+        //     cleanOnceBeforeBuildPatterns: [
+        //         "**/*", // Default Option
+        //         // path.join(process.cwd(), 'build/**/*')
+        //     ]
+        // }),
+        new HtmlWebpackPlugin({
+            title: 'eshwagadkar',
+            template: `./${sourceDir}/index.hbs`,
+            description: 'Some Description'
+        })
+    ],
+    optimization: {
+        minimizer: [
+          // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+          //   `...`,
+        ],
+      }
+}
 
 module.exports = () => {
-    if (isProduction) {
+    // PRODUCTION CONFIG
+    if (isProduction) { 
         config.mode = 'production';
-        config.plugins.push(new MiniCssExtractPlugin()); 
-    } else {
+        config.plugins.push(
+            new MiniCssExtractPlugin({ filename: 'styles.[contenthash].css' }), 
+            new CleanWebpackPlugin(),
+            new RunAfterCompile()
+        ); 
+        config.optimization.minimizer.push(new CssMinimizerPlugin())
+    // DEVELOPMENT CONFIG
+    } else {  
         config.mode = 'development';
+        config.devServer = {
+            static: `./${buildDir}/` ,
+            // watchFiles: [`./${sourceDir}/index.hbs`],  // This is not needed as we write markup using JSX CODE. 
+            hot: true,
+            port,
+            open: true,
+            compress: true,
+            historyApiFallback: true,
+            host: '0.0.0.0'
+        }
     }
-    return config;
-};
+    return config
+}
