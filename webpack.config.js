@@ -71,11 +71,12 @@ const config = {
         // }),
         new HtmlWebpackPlugin({
             title: 'eshwagadkar',
-            template: `./${sourceDir}/index.hbs`,
+            template: `./${sourceDir}/assets/templates/index.hbs`,
             description: 'My Personal Portfolio'
         })
     ],
     optimization: {
+        // splitChunks : { chunks: 'all' },
         minimizer: [
           // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
           //   `...`,
