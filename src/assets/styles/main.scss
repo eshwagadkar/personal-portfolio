@@ -4,10 +4,11 @@
 @import 'abstracts/variables';
 
 // import the base folder files
-@import 'base/base';
-@import 'base/typography';
-@import 'base/utility';
-@import 'base/animation';
+@import "normalize.css";
+@import "base/typography";
+@import "base/base";
+@import "base/utility";
+@import "base/animation";
 
 // import the component folder files
 @import 'components/button';
