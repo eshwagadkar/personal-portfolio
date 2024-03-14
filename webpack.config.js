@@ -20,7 +20,7 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 class RunAfterCompile{
     apply(compiler) {
         compiler.hooks.done.tap('Copy images', () => {
-            fse.copySync(`./${sourceDir}/assets/images`, `./${buildDir}/images`)
+            fse.copySync(`./${sourceDir}/assets/images`, `./${buildDir}/assets/images`)
         })
     }
 }
@@ -97,8 +97,8 @@ module.exports = () => {
     } else {  
         config.mode = 'development';
         config.devServer = {
-            static: `./${buildDir}/` ,
-            // watchFiles: [`./${sourceDir}/index.hbs`],  // This is not needed as we write markup using JSX CODE. 
+            static: `./${buildDir}/`,
+            watchFiles: [`./${sourceDir}/index.hbs`],  // This is not needed as we write markup using JSX CODE. 
             hot: true,
             port,
             open: true,
