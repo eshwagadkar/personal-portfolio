@@ -11,7 +11,7 @@ const isProduction = process.env.NODE_ENV == 'production'
 const pkgVars = require('./package.json')
 
 // Destructure variables from pkgVars.config
-const {entry, sourceDir, buildDir, port} = pkgVars.config
+const {sourceDir, buildDir, port} = pkgVars.config
 
 const browserCacheHandler = isProduction ? 'bundle.[contenthash].js' : 'bundle.js'
 const outputBundleHandler = isProduction ? buildDir : sourceDir
@@ -20,7 +20,7 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 class RunAfterCompile{
     apply(compiler) {
         compiler.hooks.done.tap('Copy images', () => {
-            fse.copySync(`./${sourceDir}/images`, `./${buildDir}/images`)
+            fse.copySync(`./${sourceDir}/assets/images`, `./${buildDir}/images`)
         })
     }
 }
@@ -72,7 +72,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'eshwagadkar',
             template: `./${sourceDir}/index.hbs`,
-            description: 'Some Description'
+            description: 'My Personal Portfolio'
         })
     ],
     optimization: {
