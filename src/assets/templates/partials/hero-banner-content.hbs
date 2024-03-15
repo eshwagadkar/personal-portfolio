@@ -2,9 +2,18 @@
 <div class="hero-banner__main">
 
     {{!-- Start: Hero Banner Image Container --}}
-    <div class="hero-banner__image-container">
-        <img src="./assets/images/banner-image-xs.png" alt="banner-image"/>
-    </div>
+    <picture class="hero-banner__image-container">
+        <source srcset="./assets/images/banner-image-1440.png" media="(min-width: 1440px)">
+        <source srcset="./assets/images/banner-image-1366.png" media="(min-width: 1366px)">
+        <source srcset="./assets/images/banner-image-1280.png" media="(min-width: 1280px)">
+        <source srcset="./assets/images/banner-image-1080.png" media="(min-width: 1080px)">
+        <source srcset="./assets/images/banner-image-800.png" media="(min-width: 800px)">
+        <source srcset="./assets/images/banner-image-768.png" media="(min-width: 768px)">
+        <source srcset="./assets/images/banner-image-640.png" media="(min-width: 640px)">
+        <source srcset="./assets/images/banner-image-540.png" media="(min-width: 540px)">
+        <source srcset="./assets/images/banner-image-380.png" media="(min-width: 380px)">
+        <img src="./assets/images/banner-image-xs.png" alt="banner-image-xs" />
+    </picture>
     {{!-- End: Hero Banner Image Container --}}
 
     {{!-- Start: Hero Banner Content Container --}}
