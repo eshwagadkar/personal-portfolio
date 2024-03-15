@@ -1,31 +1,74 @@
 .hero-banner{
     display: grid;
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
 
     // Header
     &__header{
-        display: flex;
+        grid-row: 1 / 2;
+
+        display: grid;
+        grid-template-rows: repeat(2, minmax(min-content, max-content));
+        grid-template-columns: repeat(4, minmax(min-content, 1fr));
     }
 
     &__logo-container{
 
+        grid-row: 1 / 2;
+        grid-column: 2 / 4;
+
+        & a{
+            text-decoration: none;
+        }
+        
         & h1{
-            // color: aqua;
+            text-align: center;
+            color: $color-white;
+            font-size: 1.5rem;
+            margin: 2rem 0;
         }
     }
 
     &__sm-ref-container{
 
+        grid-row: 2 / 3;
+        grid-column: 1 / 5;
+
+        display: flex;
+        justify-content: space-evenly;
+
+        background-image: linear-gradient(to top, $color-black-1, $color-black);
+
+        & li{
+            list-style: none;
+        }
     }
 
     // Content
     &__main{
-
+        grid-row: 2 / 3;
+        
+        display: grid;
+        grid-template-rows: repeat(3, minmax(min-content, max-content));
+        grid-template-columns: repeat(4, minmax(min-content, 1fr));
     }
 
     &__image-container{
+        background-color: $color-black-1;
+        grid-row: 1 / 2;
+        grid-column: 1 / 5;
+
+        display: flex;
+
+        & img{
+            flex: 1;
+        }
+
     }
 
     &__content-container{
+        grid-row: 2 / 3;
+        grid-column: 1 / 5;
+        
 
     }
 }
