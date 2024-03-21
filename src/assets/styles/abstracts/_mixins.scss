@@ -10,7 +10,31 @@
     }
 
     @if $breakpoint == phone-md {
+        @media only screen and (min-width: 30em) { @content; }  //480px and above
+    }
+
+    @if $breakpoint == phone-lg {
         @media only screen and (min-width: 37.5em) { @content; }  //600px and above
+    }
+
+    @if $breakpoint == tab-xs {
+        @media only screen and (min-width: 40em) { @content; }  //640px and above
+    }
+
+    @if $breakpoint == tab-sm {
+        @media only screen and (min-width: 43.75em) { @content; }  //700px and above
+    }
+
+    @if $breakpoint == tab-md {
+        @media only screen and (min-width: 48em) { @content; }  //768px and above
+    }
+
+    @if $breakpoint == tab-lg {
+        @media only screen and (min-width: 50em) { @content; }  //800px and above
+    }
+
+    @if $breakpoint == tab-vl {
+        @media only screen and (min-width: 53.124em) { @content; }  //850px and above
     }
 
     @if $breakpoint == tab-port {
