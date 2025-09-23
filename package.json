@@ -22,7 +22,7 @@
   "license": "MIT",
   "config": {
     "sourceDir": "src",
-    "buildDir": "docs",
+    "buildDir": "dist",
     "port": "3000"
   },
   "bugs": {

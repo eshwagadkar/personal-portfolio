@@ -60,7 +60,7 @@ const config = {
                     'handlebars-loader'
                 ]
             }
-         ],
+        ],
     },
     plugins: [
         // new CleanWebpackPlugin({
@@ -81,7 +81,7 @@ const config = {
           // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
           //   `...`,
         ],
-      }
+    }
 }
 
 module.exports = () => {
@@ -105,7 +105,10 @@ module.exports = () => {
             open: true,
             compress: true,
             historyApiFallback: true,
-            host: '0.0.0.0'
+            host: '0.0.0.0',
+            // devMiddleware: {
+            //     writeToDisk: true,  // 👈 forces webpack-dev-server to emit files to /build
+            // },
         }
     }
     return config

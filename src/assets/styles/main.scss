@@ -1,26 +1,7 @@
-// import the abstract folder files
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
-@import 'abstracts/variables';
-
 // import the base folder files
-@import "normalize.css";
-@import "base/typography";
-@import "base/base";
-@import "base/utility";
-@import "base/animation";
-
+@use "base";
 // import the component folder files
-@import 'components/button';
-
+@use 'components';
 // import the layout folder files
-@import 'layout/gridLayout';
-@import 'layout/header';
-@import 'layout/main';
-@import 'layout/footer';
-
-// import the pages folder files
-@import 'pages/home';
-
-
+@use 'layout';
 
