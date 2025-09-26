@@ -21,7 +21,7 @@
     }
 
     @include respond(l-desktop){
-        grid-template-columns: 180px calc(864px - 180px) calc(576px - 128px) 128px;
+        grid-template-columns: 165px calc(864px - 165px) calc(576px - 168px) 160px;
     }
 
     // logo container
@@ -43,7 +43,7 @@
         
         & h1{
             color: $color-white;
-            font-size: 1.5rem;
+            font-size: clamp(1.5rem, calc(2vw + .5rem), 2rem);
             padding: 1.3rem 0 .5rem 0;
 
             @include respond(tab-port){
@@ -53,6 +53,7 @@
             @include respond(tab-land){ 
                 padding-left: 0;
             }
+
         }
     }
 
@@ -77,7 +78,8 @@
         display: flex;
         justify-content: space-around;
         width: 200px;
-        
+        height: 100%;
+
         background-image: linear-gradient(to top, $color-primary-1, $color-primary);
         
         @include respond(tab-port){
