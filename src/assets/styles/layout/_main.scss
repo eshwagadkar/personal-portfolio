@@ -2,7 +2,7 @@
 @use '../abstracts/mixins' as *;
 
 .main{
-    margin:  3rem 3.5rem 0;
+    margin:  2.5rem 3.5rem 0;
 
     @include respond(tab-port){
         margin: 4.5rem 3rem 0;
@@ -21,6 +21,10 @@
     
     @include respond(l-desktop){
         grid-template-columns: 165px calc(1280px - 330px) 165px;
+        border-left: 1px solid $color-light-grey;
+        border-right: 1px solid $color-light-grey;
+        margin: 0;
+        padding-bottom: 4rem;
     }
     
     & .skills {
