@@ -1,10 +1,8 @@
 @use '../abstracts/mixins' as *;
 
-.main-grid-layout{
-    display: grid;
-    grid-template-rows: repeat(3, minmax(min-content, max-content));
-
+.main-grid-layout{     
      @include respond(l-desktop){
+          display: grid;
           place-items: center;
      }
 }

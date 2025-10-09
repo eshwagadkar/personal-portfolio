@@ -2,7 +2,6 @@
 @use '../abstracts/mixins' as *;
 
 .header{
-    grid-row: 1 / 2;
 
     display: grid;
     grid-template-rows: repeat(4, min-content);
@@ -59,20 +58,19 @@
 
     &__sm-ref-container {
         grid-row: 2 / 3;
-
-         @include respond(tab-port){
-             grid-row: 1 / 2;
-             grid-column: 2 / -1;
-         }
-
-         @include respond(tab-land){ 
-            grid-column: 3 / 4;
-         }
-            
         background-color: $color-primary;
-    }
+
         
-    &__sm-links {
+        @include respond(tab-port){
+            grid-row: 1 / 2;
+            grid-column: 2 / -1;
+        }
+        
+        @include respond(tab-land){ 
+            grid-column: 3 / 4;
+        }
+
+        & ul {
         margin: 0 auto;
 
         display: flex;
@@ -99,8 +97,10 @@
             }
             
         }
-    }
+        }
 
+    }
+   
     &__image-container{
         grid-row: 3 / 4;
         background-color: $color-primary;

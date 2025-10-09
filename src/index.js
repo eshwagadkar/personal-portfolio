@@ -1,8 +1,9 @@
 import './assets/styles/main.scss';
 import RevealOnScroll from './assets/scripts/RevealOnScroll';
 
-let revealOnScroll = new RevealOnScroll()
-
+new RevealOnScroll(document.querySelectorAll('.skill-item'))
+new RevealOnScroll(document.querySelectorAll('.projects'))
+new RevealOnScroll(document.querySelectorAll('.projects-item'))
 
 if( process.env.NODE_ENV === 'production' ) {
     console.log('Production Mode')

@@ -2,9 +2,9 @@ import throttle from "lodash/throttle"
 
 class RevealOnScroll {
     
-    constructor() {
-      this.itemsToReveal = document.querySelectorAll('.skill-item')
-      this.itemsToRevealProjects = document.querySelectorAll('.projects')
+    constructor(els) {
+      this.itemsToReveal = els
+      this.browserHeight = window.innerHeight
       this.hideInitially()
       this.scrollThrottle = throttle(this.calcCaller, 200).bind(this)
       this.events()
@@ -13,15 +13,9 @@ class RevealOnScroll {
     events() { window.addEventListener('scroll', this.scrollThrottle) }
 
     calcCaller() {
-        // console.log('Scroll Function Ran')
+        console.log('Scroll Function Ran')
         this.itemsToReveal.forEach(el => {
             if(el.isRevealed ==  false) {
-                this.calculateIfScrolledTo(el)
-            }
-        })
-        
-        this.itemsToRevealProjects.forEach(el => {
-            if(el.isRevealed === false) {
                 this.calculateIfScrolledTo(el)
             }
         })
@@ -29,10 +23,11 @@ class RevealOnScroll {
 
     
     calculateIfScrolledTo(el){
-        // console.log('Element was calculated')
-        let scrollPercent = (el.getBoundingClientRect().y / window.innerHeight) * 100
+      if(window.scrollY + this.browserHeight > el.offsetTop){
+          console.log('Element was calculated')
+        let scrollPercent = (el.getBoundingClientRect().y / this.browserHeight) * 100
 
-        if(scrollPercent < 75) {
+        if(scrollPercent < 80) {
             el.classList.add('reveal-item--is-visible')
             el.isRevealed = true
 
@@ -40,6 +35,7 @@ class RevealOnScroll {
                 window.removeEventListener('scroll', this.scrollThrottle)
             }
         }
+      }
     }
 
     hideInitially() {
@@ -49,14 +45,8 @@ class RevealOnScroll {
             el.isRevealed = false
         })
 
-        this.itemsToRevealProjects.forEach(el => {
-            el.classList.add('reveal-item')
-            el.isRevealed = false
-        })
-
         // To find the last item in nodelist and add a property (isLastItem) to it.
-        this.itemsToRevealProjects[this.itemsToRevealProjects.length -1].isLastItem = true 
-
+        this.itemsToReveal[this.itemsToReveal.length - 1].isLastItem = true 
     }
 }
 

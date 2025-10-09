@@ -13,9 +13,7 @@
         @media only screen and (min-width: 37.5em) { @content; }  //600px and above
     }
 
-    // Permanent fix is to use CSS Grid instead of CSS column property, 
-    // CSS column property only works better when we have to deal with gallery of images
-    @if $breakpoint == tab-medium {     // Media query only to fix a small alignment issue -temporary fix 
+    @if $breakpoint == tab-medium { 
         @media only screen and (min-width: 53em) { @content; }  //848px and above
     }
 
