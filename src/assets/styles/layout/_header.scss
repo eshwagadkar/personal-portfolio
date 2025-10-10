@@ -108,10 +108,15 @@
          grid-row: 3 / 4;
 
          position: relative;
+         width: 200px;
+         height: 320px;
 
          @include respond(tab-port){
           grid-row: 2 / -1;
           grid-column: 2 / -1;
+
+          width: 100%;
+          height: auto;
         }
 
         @include respond(tab-land){ 
@@ -122,16 +127,18 @@
 
     /* Skeleton shimmer placeholder */
     &__image-skeleton {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        80deg,
-    #2a2a2a 25%,
-    #3a3a3a 50%,
-    #2a2a2a 75%
-    );
-    background-size: 200% 100%;
-    animation: shimmer .5s infinite;
+        position: absolute;
+        // height: 100%;
+        
+        inset: 0;
+        background: linear-gradient(
+             80deg,
+            #2a2a2a 25%,
+            #3a3a3a 50%,
+          #2a2a2a 75%
+       );
+       background-size: 200% 100%;
+       animation: shimmer .5s infinite;
     }
    
     &__image-container{
