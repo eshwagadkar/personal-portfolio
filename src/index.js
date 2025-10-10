@@ -1,4 +1,5 @@
 import './assets/styles/main.scss';
+import './assets/scripts/skeletonLoader';
 import RevealOnScroll from './assets/scripts/RevealOnScroll';
 
 new RevealOnScroll(document.querySelectorAll('.skill-item'))
