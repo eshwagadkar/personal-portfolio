@@ -1,17 +1,16 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+@use '../base/animation' as *;
+
 
 .main{
     margin:  2.5rem 3.5rem 0;
 
     @include respond(tab-port){
         margin: 4.5rem 3rem 0;
-    }
-    
-    @include respond(tab-land){
         display: grid;
         grid-template-rows: repeat(2, minmax(min-content, max-content));
-        grid-template-columns: 4rem calc(100vw - 8rem) 4rem;
+        grid-template-columns: 3rem calc(100vw - 6rem) 3rem;
         margin: 5rem 0 0;
     }
             
@@ -29,10 +28,10 @@
     
     & .skills {
         
-        border-top: 1px solid $color-white;
-        border-bottom: 1px solid $color-white;
+        border-top: 1px solid $color-light-grey;
+        border-bottom: 1px solid $color-light-grey;
 
-        @include respond(tab-land){
+        @include respond(tab-port){
             grid-row: 1 / 2;
             grid-column: 2 / 3;
         }
@@ -94,185 +93,155 @@
     }
 
     & .projects {
-        
-        text-align: center;
-
-        @include respond(tab-land){
-            text-align: left;
+                
+        @include respond(tab-port){
             grid-row: 2 / 3;
             grid-column: 2 / 3;
-            
-            display: grid;
-            grid-template-rows: repeat(2, minmax(min-content, max-content));
-            // text-align: left;
         }
 
-        & h3 {
-            grid-row: 1 / 2;
-            margin: 2rem 0;
-            font-size: 2.8rem;
-        }
-
-        &__container {
+        &__title {
+            margin: 2rem auto;
+            font-size: 2rem;
             text-align: center;
-            width: min(62.5rem, 100%);
-            
-            @include respond(tab-land){
-             grid-row: 2 / 3;
-             
+
+            @include respond(tab-port){
              text-align: left;
-             display: grid;
-             grid-template-rows: repeat(3, minmax(min-content, max-content));
-             grid-template-columns: repeat(2, calc((100% - 1.8rem) / 2)); // 40px → 2.5rem
-             column-gap: 1.8rem;
             }
 
-            @include respond(desktop){
+        }
+        
+        &__list {
+
+            @include respond(tab-port){
+                display: grid;
                 grid-template-rows: repeat(2, minmax(min-content, max-content));
-                grid-template-columns: repeat(3, calc((100% - (2 * 1.25rem)) / 3)); // 20px → 1.25rem
-                column-gap: 1.25rem;
-
-            }
-
-            & li {
+                grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+                gap: 2rem;
                 list-style: none;
-
-                & img {
-                    width: 240px;
-                    object-fit: fill; 
-
-                    @include respond(tab-port){
-                        width: 400px;
-                        height: 500px;
-                    }
-
-                    @include respond(tab-land){
-                        width: 370px;
-                        height: 400px;
-                    }
-
-                    @include respond(desktop){
-                        width: 100%;
-                        height: 300px;
-                    }
-                    
-                }
-
-                & h4 {
-                    width: 100%;
-                    font-size: 1.3rem;
-                    // text-wrap: nowrap;
-                    text-transform: uppercase;
-                    margin: .5rem 0;
-                                        
-                    @include respond(tab-port){
-                        font-size: 1.8rem;
-                    }
-
-                    @include respond(desktop){
-                        font-size: 1rem;
-                    }
-
-                }
-
-                & ul {
-                    display: flex;
-                    justify-content: center;
-
-                    @include respond(tab-land){
-                        justify-content: left;
-                    }
-
-                    &:last-child{
-                        margin: .5rem 0 3.5rem 0;
-
-                        @include respond(tab-port){
-                            margin: .5rem 0 4.5rem 0;
-                        }
-
-                        @include respond(tab-land){
-                            margin: .5rem 0 4rem 0;
-                        }
-
-                        @include respond(desktop){
-                            margin: .5rem 0 2.5rem 0;
-                        }
-
-                    }
-
-                    & li {
-                        margin: 0 .5rem;
-                        font-weight: bold;
-                        color: $color-grey;
-                        font-size: 1rem;
-
-                        @include respond(tab-port){
-                            font-size: 1.5rem;
-                        }
-
-                        @include respond(tab-land){
-                            margin: 0 1rem 0 0;
-                        }
-
-
-                        @include respond(desktop){
-                           font-size: 1rem;
-                        }
-
-                        & a {
-                            text-decoration: none;
-                            color: $color-white;
-                            // margin: 0 .5rem;
-                            border-bottom: 1px solid $color-green;
-                            padding-bottom: .5rem;
-
-                            @include respond(tab-land){
-                                margin: 0 1rem 0 0;
-                            }
-                        }
-                    }
-
-                }
-
-                &:last-child img {
-                    border: 1px solid $color-light-grey;
-                } 
-
+                padding: 0;
+                margin-bottom: 60px;
             }
+            
+            @include respond(tab-small){
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            @include respond(tab-medium){
+                grid-template-columns: repeat(3, minmax(200px, 1fr));
+            }
+
         }
 
-        @include respond(desktop){
-            &-1{
-                grid-row: 2 / 3;
-                grid-column: 1 / 2;
+        &__item {
+            margin-bottom: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            border: 1px solid rgba($color:$color-light-grey, $alpha: .3);
+            
+            &:hover { transform: translateY(-5px); }
+                        
+            @include respond(tab-port){
+                 margin-bottom: 0px;
             }
-    
-            &-2{
-                grid-row: 2 / 3 ;
-                grid-column: 2 / 3;
+
+        }
+        
+        &__figure {
+            width: 100%;
+            aspect-ratio: 16 / 12;
+            overflow: hidden;
+            margin: 0;
+            position: relative;
+        }
+        
+        &__content {
+            position: relative;
+            
+            &::after{
+                content: '';
+                background-color: rgba($color-primary, .6);
+                transition: all .3s ease; 
+                position: absolute;
+                top: 0%;
+                left: 0%;  
+                bottom: 0;
+                right: 0;
             }
-    
-            &-3{
-                grid-row: 2 / 3;
-                grid-column: 3 / 4;
-            }
-    
-            &-4{
-                grid-row: 3 / 4 ;
-                grid-column: 1 / 2;
-            }
-    
-            &-5{
-                grid-row: 3 / 4;
-                grid-column: 2 / 3;
-            }
-    
-            &-6{
-                grid-row: 3 / 4;
-                grid-column: 3 /4;
-            }
+        }
+            
+        &__image { width: 100%; }
+
+        &__caption{
+            background-color: rgba($color-primary, .6);
+            transition: all .3s ease;
+
+            position: absolute;
+            top: 0%;
+            left: 0%;  
+            bottom: 0;
+            right: 0;
+        }
+
+        &__item:hover .projects__caption { 
+            background-color: transparent;
+        }
+
+        &__item:hover .projects__content::after { 
+            background-color: transparent;
+
+            position: unset;
         }
 
 
+        &__name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 1rem 0 .5rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        &__tech-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        &__tech-item {
+           font-size: 0.85rem;
+           color: #928f8f;
+           text-transform: uppercase;
+           letter-spacing: 0.5px;
+           font-weight: 500;
+        }
+        
+        &__links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+            padding: 0;
+        }
+        
+        &__link {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.7rem;
+        }
+        
+        &__link-item {
+            padding-bottom: .3rem;
+            border-bottom: .5px solid $color-green;
+        }
     }
 }

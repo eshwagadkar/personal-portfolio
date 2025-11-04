@@ -13,6 +13,10 @@
         @media only screen and (min-width: 37.5em) { @content; }  //600px and above
     }
 
+     @if $breakpoint == tab-small { 
+        @media only screen and (min-width: 48em) { @content; }  //768px and above
+    }
+
     @if $breakpoint == tab-medium { 
         @media only screen and (min-width: 53em) { @content; }  //848px and above
     }
