@@ -40,9 +40,7 @@
             width: min(62.5rem, 100%);
             margin: 3rem auto;
             
-            @include respond(tab-port){
-               margin: 3.2rem auto 2rem;
-            }
+            @include respond(tab-port){ margin: 3.2rem auto 2rem; }
 
             @include respond(tab-port){
                display: grid;
@@ -84,9 +82,7 @@
 
                 & h4{ color: $color-grey; }
 
-                @include respond(tab-port){
-                  justify-content: start;
-                }
+                @include respond(tab-port){justify-content: start;}
             }
         }
 
@@ -105,16 +101,9 @@
             text-align: center;
             font-size: clamp(2rem, calc(6vw + 1rem), 2.4rem);
              
-            @include respond(tab-port){
-                 text-align: left;
-            }
+            @include respond(tab-port){ text-align: left; }
 
-            @include respond(tab-land){
-               font-size: clamp(1.8rem, calc(6vw + 1rem), 2rem);
-            }
-
-
-
+            @include respond(tab-land){ font-size: clamp(1.8rem, calc(6vw + 1rem), 2rem); }
         }
         
         &__list {
@@ -129,13 +118,9 @@
                 margin-bottom: 40px;
             }
             
-            @include respond(tab-small){
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
+            @include respond(tab-small){ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
             
-            @include respond(tab-medium){
-                grid-template-columns: repeat(3, minmax(200px, 1fr));
-            }
+            @include respond(tab-medium){ grid-template-columns: repeat(3, minmax(200px, 1fr)); }
 
         }
 
@@ -145,15 +130,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
             border: 1px solid $color-border;
             
             &:hover { transform: translateY(-5px); }
                         
-            @include respond(tab-port){
-                 margin-bottom: 0;
-            }
-
+            @include respond(tab-port){ margin-bottom: 0; }
         }
         
         &__figure {
@@ -192,13 +173,10 @@
             right: 0;
         }
 
-        &__item:hover .projects__caption { 
-            background-color: transparent;
-        }
+        &__item:hover .projects__caption { background-color: transparent; }
 
         &__item:hover .projects__content::after { 
             background-color: transparent;
-
             position: unset;
         }
 
@@ -235,9 +213,7 @@
            letter-spacing: 0.5px;
            font-weight: 500;
 
-            @include respond(tab-port){ 
-              font-size: clamp(.85rem, calc(2vw + .5rem), 1.1rem);
-            }
+            @include respond(tab-port){ font-size: clamp(.85rem, calc(2vw + .5rem), 1.1rem); }
         }
         
         &__links {
@@ -250,9 +226,7 @@
             list-style: none;
             padding: 0;
 
-            @include respond(tab-port){ 
-              flex-direction: row;
-            }
+            @include respond(tab-port){  flex-direction: row; }
         }
         
         &__link {
@@ -260,9 +234,7 @@
             color: #fff;
             font-size: clamp(.9rem, calc(2vw + .5rem), 1.2rem);
             
-            @include respond(tab-port){ 
-                font-size: clamp(.9rem, calc(2vw + .5rem), .8rem)
-            }
+            @include respond(tab-port){ font-size: clamp(.9rem, calc(2vw + .5rem), .8rem) }
         }
         
         &__link-item {

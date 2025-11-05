@@ -1,10 +1,12 @@
 // Media Query Manager
 
 // 0 ~ 600px : Phone
-// 600px ~ 900px : Tablet Portrait
-// 900px ~ 1200px: Tablet Landscape
-// 1050px ~ 1800px : Desktop 
-// 1800px+ : Big Desktop
+// 600px ~ 768px : Portrait Tablet 
+// 768px ~ 848px : Small Tablet
+// 848px ~ 900px : Medium Tablet
+// 900px ~ 1050px: Landscape Tablet
+// 1050px ~ 1280px : Desktop 
+// 1280px+ : Large Desktop
 
 // Media Query Manager
 @mixin respond($breakpoint){
