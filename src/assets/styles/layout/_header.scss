@@ -25,8 +25,8 @@
 
     @include respond(l-desktop){
         grid-template-columns: 165px calc(768px - 165px) calc(512px - 165px) 165px;
-        border-left: 1px solid $color-light-grey;
-        border-right: 1px solid $color-light-grey;
+        border-left:  1px solid $color-border;
+        border-right:  1px solid $color-border;
         padding-bottom: 4rem;
     }
 
